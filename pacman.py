@@ -1,3 +1,8 @@
+# A00826973 Ingrid Giselle Paz Ramírez
+# A00827533 Leo Abraham Puente Rangel
+# Programa que recrea el famoso juego PACMAN
+# Fecha de entrega: 28/10/2020
+
 from random import choice
 from turtle import *
 from freegames import floor, vector
