@@ -131,10 +131,10 @@ def move():
         else:
             #Si no es válido cambiar la dirección al azar
             options = [
-                vector(10, 0),
-                vector(-10, 0),
-                vector(0, -10),
-                vector(0, 10),
+                vector(8, 0),
+                vector(-8, 0),
+                vector(0, -8),
+                vector(0, 8),
             ]
             #Los fantasmas ahora son capaces de moverse más lejos
             plan = choice(options)
