@@ -59,6 +59,7 @@ def square(x, y):
     path.end_fill()
 
 def offset(point):
+    #Hallar el índice para el tablero 
     "Return offset of point in tiles."
     x = (floor(point.x, 20) + 200) / 20
     y = (180 - floor(point.y, 20)) / 20
@@ -66,6 +67,7 @@ def offset(point):
     return index
 
 def valid(point):
+     #Verificar que los movimientos no sean fuera de la pantalla
     "Return True if point is valid in tiles."
     index = offset(point)
 
@@ -80,6 +82,7 @@ def valid(point):
     return point.x % 20 == 0 or point.y % 20 == 0
 
 def world():
+     #Dibujar el tablero
     "Draw world using path."
     bgcolor('black')
     path.color('blue')
@@ -98,6 +101,7 @@ def world():
                 path.dot(2, 'white')
 
 def move():
+     #Movimiento de Pacman y los fantasmas
     "Move pacman and all ghosts."
     writer.undo()
     writer.write(state['score'])
@@ -146,7 +150,7 @@ def move():
             goto(pacman.x)
         if abs(pacman.y-point.y)<10:
             goto(pacman.y)
-       
+       #Los fantasmas siguen a Pacman
         up()
         goto(point.x + 10, point.y + 10)
         dot(20, 'red')
@@ -159,8 +163,10 @@ def move():
            return
 
     ontimer(move, 50)
+   #Velocidad a la que se mueven 
 
 def change(x, y):
+    #Cambio de dirección de Pacman 
     "Change pacman aim if valid."
     if valid(pacman + vector(x, y)):
         aim.x = x
