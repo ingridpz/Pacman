@@ -146,10 +146,10 @@ def move():
             course.x = plan.x
             course.y = plan.y
             
-        if abs(pacman.x-point.x)<10:
-            goto(pacman.x)
-        if abs(pacman.y-point.y)<10:
-            goto(pacman.y)
+        if abs(pacman-point)<10:
+            goto(pacman)
+        if abs(pacman-point)<10:
+            goto(pacman)
        #Los fantasmas siguen a Pacman
         up()
         goto(point.x + 10, point.y + 10)
