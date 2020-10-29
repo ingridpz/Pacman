@@ -8,16 +8,20 @@ from turtle import *
 from freegames import floor, vector
 
 state = {'score': 0}
+#puntaje
 path = Turtle(visible=False)
 writer = Turtle(visible=False)
 aim = vector(5, 0)
+#Dirección
 pacman = vector(-40, -80)
+#Posición de Pacman
 ghosts = [
     [vector(-180, 160), vector(5, 0)],
     [vector(-180, -160), vector(0, 5)],
     [vector(100, 160), vector(0, -5)],
     [vector(100, -160), vector(-5, 0)],
 ]
+#Posición de fantasmas
 tiles = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0,
@@ -97,10 +101,11 @@ def move():
     "Move pacman and all ghosts."
     writer.undo()
     writer.write(state['score'])
-
+    #Puntaje
     clear()
 
     if valid(pacman + aim):
+        #Si el movimiento es válido, pacman se mueve
         pacman.move(aim)
 
     index = offset(pacman)
@@ -111,29 +116,36 @@ def move():
         x = (index % 20) * 20 - 200
         y = 180 - (index // 20) * 20
         square(x, y)
+        #Conteo de puntos
+        #Aumenta el puntaje por cada punto que come
 
     up()
-    goto(pacman.x + 10, pacman.y + 10)
+    goto(pacman.x + 10, pacman.y + 10) 
     dot(20, 'yellow')
+    #Color y tamaño de Pacman
     
     for point, course in ghosts:
         if valid(point + course):
             point.move(course)
-        else: 
+            #Verificar que el movimiento sea posible
+        else:
+            #Si no es válido cambiar la dirección al azar
             options = [
                 vector(10, 0),
                 vector(-10, 0),
                 vector(0, -10),
                 vector(0, 10),
             ]
+            #Los fantasmas ahora son capaces de moverse más lejos
             plan = choice(options)
+            #Moverse en la nueva dirección
             course.x = plan.x
             course.y = plan.y
             
         if abs(pacman.x-point.x)<10:
-            goto(pacman)
+            goto(pacman.x)
         if abs(pacman.y-point.y)<10:
-            goto(pacman)
+            goto(pacman.y)
        
         up()
         goto(point.x + 10, point.y + 10)
